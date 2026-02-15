@@ -8,12 +8,13 @@ class Program
 
         while (continueProgram)
         {
-            Console.WriteLine("Выберите тип транспорта:");
-            Console.WriteLine("1. Автомобиль");
-            Console.WriteLine("2. Мотоцикл");
-            Console.WriteLine("3. Грузовик");
-            Console.WriteLine("0. Выход");
-            Console.Write("\nВаш выбор: ");
+            Console.WriteLine("Select transport type:");
+            Console.WriteLine("1 Car");
+            Console.WriteLine("2 Motorcycle");
+            Console.WriteLine("3 Truck");
+            Console.WriteLine("4 Bus");
+            Console.WriteLine("0 Exit");
+            Console.Write("\nYour choice: ");
 
             string choice = Console.ReadLine();
 
@@ -30,12 +31,15 @@ class Program
                 case "3":
                     creator = CreateTruck();
                     break;
+                case "4":
+                    creator = CreateBus();
+                    break;
                 case "0":
                     continueProgram = false;
-                    Console.WriteLine("До свидания!");
+                    Console.WriteLine("Goodbye!");
                     continue;
                 default:
-                    Console.WriteLine("Неверный выбор. Попробуйте снова.");
+                    Console.WriteLine("Invalid choice. Please try again.");
                     continue;
             }
 
@@ -48,13 +52,13 @@ class Program
 
     static CarCreator CreateCar()
     {
-        Console.Write("Введите марку автомобиля: ");
+        Console.Write("Enter car brand: ");
         string mark = Console.ReadLine();
 
-        Console.Write("Введите модель: ");
+        Console.Write("Enter model: ");
         string model = Console.ReadLine();
 
-        Console.Write("Введите тип топлива: ");
+        Console.Write("Enter fuel type: ");
         string oilType = Console.ReadLine();
 
         return new CarCreator(mark, model, oilType);
@@ -62,10 +66,10 @@ class Program
 
     static MotorcycleCreator CreateMotorcycle()
     {
-        Console.Write("Введите тип мотоцикла: ");
+        Console.Write("Enter motorcycle type: ");
         string type = Console.ReadLine();
 
-        Console.Write("Введите объём двигателя: ");
+        Console.Write("Enter the volume: ");
         string volume = Console.ReadLine();
 
         return new MotorcycleCreator(type, volume);
@@ -73,12 +77,23 @@ class Program
 
     static TruckCreator CreateTruck()
     {
-        Console.Write("Введите грузоподъёмность: ");
+        Console.Write("Enter load capacity: ");
         int liftCapacity = int.Parse(Console.ReadLine());
 
-        Console.Write("Введите количество осей: ");
+        Console.Write("Enter number of axles: ");
         int axes = int.Parse(Console.ReadLine());
 
         return new TruckCreator(liftCapacity, axes);
+    }
+
+    static BusCreator CreateBus()
+    {
+        Console.Write("Enter passenger capacity: ");
+        int capacity = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter body color: ");
+        string color = Console.ReadLine();
+
+        return new BusCreator(capacity, color);
     }
 }
